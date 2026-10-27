@@ -5,15 +5,50 @@
 ---
 
 ## 目錄 (Table of Contents)
-1. [實驗流程與 Event Codes](#-1-實驗流程與-event-codes)
-2. [環境建置與安裝](#-2-環境建置與安裝)
-3. [實驗執行步驟 (Quick Start)](#-3-實驗執行步驟-quick-start)
-4. [修改與維護實驗 (PsychoPy Builder)](#-4-修改與維護實驗-psychopy-builder)
-5. [資料輸出與 Marker 對齊說明](#-5-資料輸出與-marker-對齊說明)
+1. [專案目錄與資料位置](#-1-專案目錄與資料位置)
+2. [實驗流程與 Event Codes](#-2-實驗流程與-event-codes)
+3. [環境建置與安裝](#-3-環境建置與安裝)
+4. [實驗執行步驟 (Quick Start)](#-4-實驗執行步驟-quick-start)
+5. [修改與維護實驗 (PsychoPy Builder)](#-5-修改與維護實驗-psychopy-builder)
+6. [資料輸出與 Marker 對齊說明](#-6-資料輸出與-marker-對齊說明)
 
 ---
 
-##  1. 實驗流程與 Event Codes
+## 1. 專案目錄與資料位置
+
+進行資料查找或分析時，請先依照資料類型確認所在的資料夾。專案根目錄的主要檔案與資料夾如下：
+
+```text
+Neuroimaging_ECG_HW1/
+├── marker_log/                         # PsychoPy 產生的 Event Marker 紀錄
+│   └── sub-*_sess-*_marker_*.csv       # 依受試者、場次與時間命名
+├── data/                               # Polar H10 匯出的生理訊號資料
+│   ├── *_RAW.csv                      # 原始 ECG 訊號
+│   └── *_peaks.csv                    # 偵測到的心跳峰值資料
+├── Experiment_v1.psyexp                # PsychoPy Builder 實驗設定檔
+├── Experiment_v1_lastrun.py            # PsychoPy 產生的實驗執行程式
+├── psychopy_marker_code.py             # PsychoPy Marker 發送與紀錄相關程式
+├── polar_bridge.py                     # Polar H10 訊號橋接服務
+├── VerityCollectionToolv0.057.html     # Polar H10 監控頁面（請由橋接服務開啟）
+├── VerityCollectionToolv0.051.html     # 舊版 Polar H10 監控頁面
+└── *.png                               # 實驗中使用的視覺刺激圖片
+```
+
+### 要找哪一種資料？
+
+| 資料內容 | 存放位置 | 說明 |
+| :--- | :--- | :--- |
+| 實驗階段與事件時間點 | `marker_log/` | 每次實驗產生一個 CSV，檔名包含受試者（`sub-*`）、場次（`sess-*`）與記錄時間 |
+| Polar H10 原始 ECG 訊號 | `data/*_RAW.csv` | 用於後續訊號處理與分析的原始資料 |
+| Polar H10 心跳峰值 | `data/*_peaks.csv` | 已整理出的心跳峰值資料，可用於心率或 HRV 分析 |
+| 實驗流程與參數 | `Experiment_v1.psyexp` | 使用 PsychoPy Builder 修改實驗時應開啟的檔案 |
+| 實驗程式與橋接程式 | `Experiment_v1_lastrun.py`、`psychopy_marker_code.py`、`polar_bridge.py` | 用於執行實驗、發送 Marker，以及連接 Polar H10 |
+
+> **資料整理建議**：分析時請使用相同受試者與場次的 `marker_log/` 和 `data/` 檔案配對。`marker_log/` 的 timestamp 可用來對齊 `data/` 中的 Polar H10 訊號；不要只依檔案建立時間判斷配對關係。
+
+---
+
+## 2. 實驗流程與 Event Codes
 
 ###  實驗 Demo
 - **吹氣球運動 Demo 影片**：[點此觀看(https://youtu.be/jt4U0glHhaA)]
@@ -63,7 +98,7 @@ flowchart TD
 
 ---
 
-## 2. 環境建置與安裝
+## 3. 環境建置與安裝
 
 ### 1. 安裝 PsychoPy
 - 下載連結：[PsychoPy Download Page](https://psychopy.org/download.html)
@@ -82,7 +117,7 @@ flowchart TD
 
 ---
 
-## 3. 實驗執行步驟 (Quick Start)
+## 4. 實驗執行步驟 (Quick Start)
 
 請按照以下順序執行實驗：
 
@@ -108,7 +143,7 @@ python polar_bridge.py
 
 ---
 
-## 4. 修改與維護實驗 (PsychoPy Builder)
+## 5. 修改與維護實驗 (PsychoPy Builder)
 
 如果需要修改實驗流程、時間長度或刺激內容：
 1. 打開 **PsychoPy Builder** 介面。
@@ -117,7 +152,7 @@ python polar_bridge.py
 
 ---
 
-## 5. 資料輸出與 Marker 對齊說明
+## 6. 資料輸出與 Marker 對齊說明
 
 - **Marker 日誌**：實驗執行時，PsychoPy 會同步將時間點記錄於 `marker_log/` 資料夾中。
 - **訊號對齊**：後續進行數據處理時，可利用 `marker_log/` 中的 timestamp 與 Polar H10 網頁接收到的 Marker 進行時間軸對齊（Synchronization）。
