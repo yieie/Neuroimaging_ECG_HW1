@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2026.2.4),
-    on 十月 15, 2026, at 16:32
+    on 十月 27, 2026, at 16:05
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -57,6 +57,10 @@ runAtExit = []
 expInfo = {
     'participant': f"{randint(0, 999999):06.0f}",
     'session': '001',
+    'age': '',
+    'gender': ['Male', 'Female', 'Other'],
+    'birthday': 'YYYY-MM-DD',
+    'group': [1, 2],
     'date|hid': data.getDateStr(),
     'expName|hid': expName,
     'expVersion|hid': expVersion,
@@ -142,7 +146,7 @@ def setupData(expInfo, dataDir=None):
     thisExp = data.ExperimentHandler(
         name=expName, version=expVersion,
         extraInfo=expInfo, runtimeInfo=None,
-        originPath='C:\\Users\\NCKU\\Desktop\\class\\Neuro\\HW1\\Experiment_v1_lastrun.py',
+        originPath='C:\\Users\\NCKU\\Desktop\\class\\Neuro\\Neuroimaging_ECG_HW1\\Experiment_v1_lastrun.py',
         savePickle=True, saveWideText=True,
         dataFileName=dataDir + os.sep + filename, sortColumns='time'
     )
@@ -672,7 +676,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     deflate = visual.TextStim(win=win, name='deflate',
         text='請將氣球放氣 並持續跟隨呼吸節奏',
         font='Microsoft JhengHei',
-        pos=(0, 0.4), draggable=False, height=0.05, wrapWidth=2.0, ori=0.0, 
+        pos=(0, -0.4), draggable=False, height=0.05, wrapWidth=2.0, ori=0.0, 
         color='white', colorSpace='rgb', opacity=None, 
         languageStyle='LTR',
         depth=-4.0);
@@ -1013,7 +1017,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     # --- Run Routine "routine_02_Baseline_A_Notice" ---
     thisExp.currentRoutine = routine_02_Baseline_A_Notice
     routine_02_Baseline_A_Notice.forceEnded = routineForceEnded = not continueRoutine
-    while continueRoutine and routineTimer.getTime() < 1.0:
+    while continueRoutine:
         # get current time
         t = routineTimer.getTime()
         tThisFlip = win.getFutureFlipTime(clock=routineTimer)
@@ -1041,20 +1045,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             # update params
             notice.setText('【靜坐基準測量】\n\n請保持舒適坐姿，雙眼注視中央「+」字\n維持自然呼吸，放鬆心情\n（時間：5 分鐘）\n\n準備好後，請按下 [空白鍵 Space] 開始測量。', log=False)
         
-        # if notice is stopping this frame...
-        if notice.status == STARTED:
-            # is it time to stop? (based on global clock, using actual start)
-            if tThisFlipGlobal > notice.tStartRefresh + 1-frameTolerance:
-                # keep track of stop time/frame for later
-                notice.tStop = t  # not accounting for scr refresh
-                notice.tStopRefresh = tThisFlipGlobal  # on global time
-                notice.frameNStop = frameN  # exact frame index
-                # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'notice.stopped')
-                # update status
-                notice.status = FINISHED
-                notice.setAutoDraw(False)
-        
         # *key_resp_2* updates
         waitOnFlip = False
         
@@ -1073,20 +1063,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             waitOnFlip = True
             win.callOnFlip(key_resp_2.clock.reset)  # t=0 on next screen flip
             win.callOnFlip(key_resp_2.clearEvents, eventType='keyboard')  # clear events on next screen flip
-        
-        # if key_resp_2 is stopping this frame...
-        if key_resp_2.status == STARTED:
-            # is it time to stop? (based on global clock, using actual start)
-            if tThisFlipGlobal > key_resp_2.tStartRefresh + 1-frameTolerance:
-                # keep track of stop time/frame for later
-                key_resp_2.tStop = t  # not accounting for scr refresh
-                key_resp_2.tStopRefresh = tThisFlipGlobal  # on global time
-                key_resp_2.frameNStop = frameN  # exact frame index
-                # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'key_resp_2.stopped')
-                # update status
-                key_resp_2.status = FINISHED
-                key_resp_2.status = FINISHED
         if key_resp_2.status == STARTED and not waitOnFlip:
             theseKeys = key_resp_2.getKeys(keyList=['space'], ignoreKeys=["escape"], waitRelease=False)
             _key_resp_2_allKeys.extend(theseKeys)
@@ -1146,14 +1122,9 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     if key_resp_2.keys != None:  # we had a response
         thisExp.addData('key_resp_2.rt', key_resp_2.rt)
         thisExp.addData('key_resp_2.duration', key_resp_2.duration)
-    # using non-slip timing so subtract the expected duration of this Routine (unless ended on request)
-    if routine_02_Baseline_A_Notice.maxDurationReached:
-        routineTimer.addTime(-routine_02_Baseline_A_Notice.maxDuration)
-    elif routine_02_Baseline_A_Notice.forceEnded:
-        routineTimer.reset()
-    else:
-        routineTimer.addTime(-1.000000)
     thisExp.nextEntry()
+    # the Routine "routine_02_Baseline_A_Notice" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset()
     
     # --- Prepare to start Routine "routine_02_Baseline_A_Countdown" ---
     # create an object to store info about Routine routine_02_Baseline_A_Countdown
@@ -1540,7 +1511,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     # --- Run Routine "routine_03_Task_breath_Instr" ---
     thisExp.currentRoutine = routine_03_Task_breath_Instr
     routine_03_Task_breath_Instr.forceEnded = routineForceEnded = not continueRoutine
-    while continueRoutine and routineTimer.getTime() < 1.0:
+    while continueRoutine:
         # get current time
         t = routineTimer.getTime()
         tThisFlip = win.getFutureFlipTime(clock=routineTimer)
@@ -1568,20 +1539,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             # update params
             pass
         
-        # if Task_breath is stopping this frame...
-        if Task_breath.status == STARTED:
-            # is it time to stop? (based on global clock, using actual start)
-            if tThisFlipGlobal > Task_breath.tStartRefresh + 1-frameTolerance:
-                # keep track of stop time/frame for later
-                Task_breath.tStop = t  # not accounting for scr refresh
-                Task_breath.tStopRefresh = tThisFlipGlobal  # on global time
-                Task_breath.frameNStop = frameN  # exact frame index
-                # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'Task_breath.stopped')
-                # update status
-                Task_breath.status = FINISHED
-                Task_breath.setAutoDraw(False)
-        
         # *key_resp_8* updates
         waitOnFlip = False
         
@@ -1600,20 +1557,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             waitOnFlip = True
             win.callOnFlip(key_resp_8.clock.reset)  # t=0 on next screen flip
             win.callOnFlip(key_resp_8.clearEvents, eventType='keyboard')  # clear events on next screen flip
-        
-        # if key_resp_8 is stopping this frame...
-        if key_resp_8.status == STARTED:
-            # is it time to stop? (based on global clock, using actual start)
-            if tThisFlipGlobal > key_resp_8.tStartRefresh + 1-frameTolerance:
-                # keep track of stop time/frame for later
-                key_resp_8.tStop = t  # not accounting for scr refresh
-                key_resp_8.tStopRefresh = tThisFlipGlobal  # on global time
-                key_resp_8.frameNStop = frameN  # exact frame index
-                # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'key_resp_8.stopped')
-                # update status
-                key_resp_8.status = FINISHED
-                key_resp_8.status = FINISHED
         if key_resp_8.status == STARTED and not waitOnFlip:
             theseKeys = key_resp_8.getKeys(keyList=['space'], ignoreKeys=["escape"], waitRelease=False)
             _key_resp_8_allKeys.extend(theseKeys)
@@ -1673,14 +1616,9 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     if key_resp_8.keys != None:  # we had a response
         thisExp.addData('key_resp_8.rt', key_resp_8.rt)
         thisExp.addData('key_resp_8.duration', key_resp_8.duration)
-    # using non-slip timing so subtract the expected duration of this Routine (unless ended on request)
-    if routine_03_Task_breath_Instr.maxDurationReached:
-        routineTimer.addTime(-routine_03_Task_breath_Instr.maxDuration)
-    elif routine_03_Task_breath_Instr.forceEnded:
-        routineTimer.reset()
-    else:
-        routineTimer.addTime(-1.000000)
     thisExp.nextEntry()
+    # the Routine "routine_03_Task_breath_Instr" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset()
     
     # --- Prepare to start Routine "routine_03_Task_breath_Countdown" ---
     # create an object to store info about Routine routine_03_Task_breath_Countdown
@@ -2448,7 +2386,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     # --- Run Routine "routine_05_Task_blow_Instr" ---
     thisExp.currentRoutine = routine_05_Task_blow_Instr
     routine_05_Task_blow_Instr.forceEnded = routineForceEnded = not continueRoutine
-    while continueRoutine and routineTimer.getTime() < 1.0:
+    while continueRoutine:
         # get current time
         t = routineTimer.getTime()
         tThisFlip = win.getFutureFlipTime(clock=routineTimer)
@@ -2476,20 +2414,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             # update params
             pass
         
-        # if Task_blow is stopping this frame...
-        if Task_blow.status == STARTED:
-            # is it time to stop? (based on global clock, using actual start)
-            if tThisFlipGlobal > Task_blow.tStartRefresh + 1-frameTolerance:
-                # keep track of stop time/frame for later
-                Task_blow.tStop = t  # not accounting for scr refresh
-                Task_blow.tStopRefresh = tThisFlipGlobal  # on global time
-                Task_blow.frameNStop = frameN  # exact frame index
-                # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'Task_blow.stopped')
-                # update status
-                Task_blow.status = FINISHED
-                Task_blow.setAutoDraw(False)
-        
         # *key_resp_9* updates
         waitOnFlip = False
         
@@ -2508,20 +2432,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             waitOnFlip = True
             win.callOnFlip(key_resp_9.clock.reset)  # t=0 on next screen flip
             win.callOnFlip(key_resp_9.clearEvents, eventType='keyboard')  # clear events on next screen flip
-        
-        # if key_resp_9 is stopping this frame...
-        if key_resp_9.status == STARTED:
-            # is it time to stop? (based on global clock, using actual start)
-            if tThisFlipGlobal > key_resp_9.tStartRefresh + 1-frameTolerance:
-                # keep track of stop time/frame for later
-                key_resp_9.tStop = t  # not accounting for scr refresh
-                key_resp_9.tStopRefresh = tThisFlipGlobal  # on global time
-                key_resp_9.frameNStop = frameN  # exact frame index
-                # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'key_resp_9.stopped')
-                # update status
-                key_resp_9.status = FINISHED
-                key_resp_9.status = FINISHED
         if key_resp_9.status == STARTED and not waitOnFlip:
             theseKeys = key_resp_9.getKeys(keyList=['space'], ignoreKeys=["escape"], waitRelease=False)
             _key_resp_9_allKeys.extend(theseKeys)
@@ -2581,14 +2491,9 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     if key_resp_9.keys != None:  # we had a response
         thisExp.addData('key_resp_9.rt', key_resp_9.rt)
         thisExp.addData('key_resp_9.duration', key_resp_9.duration)
-    # using non-slip timing so subtract the expected duration of this Routine (unless ended on request)
-    if routine_05_Task_blow_Instr.maxDurationReached:
-        routineTimer.addTime(-routine_05_Task_blow_Instr.maxDuration)
-    elif routine_05_Task_blow_Instr.forceEnded:
-        routineTimer.reset()
-    else:
-        routineTimer.addTime(-1.000000)
     thisExp.nextEntry()
+    # the Routine "routine_05_Task_blow_Instr" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset()
     
     # --- Prepare to start Routine "routine_05_Task_blow_Countdown" ---
     # create an object to store info about Routine routine_05_Task_blow_Countdown
@@ -4348,7 +4253,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     # --- Run Routine "routine_06_Exper_End" ---
     thisExp.currentRoutine = routine_06_Exper_End
     routine_06_Exper_End.forceEnded = routineForceEnded = not continueRoutine
-    while continueRoutine and routineTimer.getTime() < 1.0:
+    while continueRoutine:
         # get current time
         t = routineTimer.getTime()
         tThisFlip = win.getFutureFlipTime(clock=routineTimer)
@@ -4376,20 +4281,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             # update params
             pass
         
-        # if Exper_End is stopping this frame...
-        if Exper_End.status == STARTED:
-            # is it time to stop? (based on global clock, using actual start)
-            if tThisFlipGlobal > Exper_End.tStartRefresh + 1-frameTolerance:
-                # keep track of stop time/frame for later
-                Exper_End.tStop = t  # not accounting for scr refresh
-                Exper_End.tStopRefresh = tThisFlipGlobal  # on global time
-                Exper_End.frameNStop = frameN  # exact frame index
-                # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'Exper_End.stopped')
-                # update status
-                Exper_End.status = FINISHED
-                Exper_End.setAutoDraw(False)
-        
         # *key_resp_10* updates
         waitOnFlip = False
         
@@ -4408,20 +4299,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             waitOnFlip = True
             win.callOnFlip(key_resp_10.clock.reset)  # t=0 on next screen flip
             win.callOnFlip(key_resp_10.clearEvents, eventType='keyboard')  # clear events on next screen flip
-        
-        # if key_resp_10 is stopping this frame...
-        if key_resp_10.status == STARTED:
-            # is it time to stop? (based on global clock, using actual start)
-            if tThisFlipGlobal > key_resp_10.tStartRefresh + 1-frameTolerance:
-                # keep track of stop time/frame for later
-                key_resp_10.tStop = t  # not accounting for scr refresh
-                key_resp_10.tStopRefresh = tThisFlipGlobal  # on global time
-                key_resp_10.frameNStop = frameN  # exact frame index
-                # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'key_resp_10.stopped')
-                # update status
-                key_resp_10.status = FINISHED
-                key_resp_10.status = FINISHED
         if key_resp_10.status == STARTED and not waitOnFlip:
             theseKeys = key_resp_10.getKeys(keyList=['space'], ignoreKeys=["escape"], waitRelease=False)
             _key_resp_10_allKeys.extend(theseKeys)
@@ -4481,14 +4358,9 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     if key_resp_10.keys != None:  # we had a response
         thisExp.addData('key_resp_10.rt', key_resp_10.rt)
         thisExp.addData('key_resp_10.duration', key_resp_10.duration)
-    # using non-slip timing so subtract the expected duration of this Routine (unless ended on request)
-    if routine_06_Exper_End.maxDurationReached:
-        routineTimer.addTime(-routine_06_Exper_End.maxDuration)
-    elif routine_06_Exper_End.forceEnded:
-        routineTimer.reset()
-    else:
-        routineTimer.addTime(-1.000000)
     thisExp.nextEntry()
+    # the Routine "routine_06_Exper_End" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset()
     
     # mark experiment as finished
     endExperiment(thisExp, win=win)
