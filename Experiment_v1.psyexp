@@ -89,7 +89,7 @@
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
         <Param val="0.0" valType="code" updates="None" name="startVal"/>
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="1" valType="code" updates="constant" name="stopVal"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
         <Param val="歡迎參加本實驗&amp;#10;&amp;#10;1.請確認已正確配戴 Polar H10 心率帶。&amp;#10;2.實驗過程中請保持身體放鬆、勿大幅度移動。&amp;#10;3.本實驗包含：靜坐基準測量、慢呼吸引導與吹氣球任務。&amp;#10;&amp;#10;準備好後，請按下 [空白鍵 Space] 開始練習與測量。" valType="str" updates="constant" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
@@ -110,7 +110,7 @@
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
         <Param val="0.0" valType="code" updates="None" name="startVal"/>
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="1" valType="code" updates="constant" name="stopVal"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="last key" valType="str" updates="constant" name="store"/>
         <Param val="False" valType="bool" updates="constant" name="storeCorrect"/>
         <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
@@ -571,7 +571,7 @@
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
         <Param val="0" valType="code" updates="None" name="startVal"/>
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="300.0" valType="code" updates="constant" name="stopVal"/>
+        <Param val="300" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
         <Param val="+" valType="str" updates="constant" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
@@ -595,6 +595,33 @@
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="code_3" valType="code" updates="None" name="name"/>
       </CodeComponent>
+      <TextComponent name="text_5" plugin="None">
+        <Param val="white" valType="color" updates="constant" name="color"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="1" valType="num" updates="constant" name="contrast"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="False" valType="code" updates="constant" name="draggable"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="None" valType="str" updates="constant" name="flip"/>
+        <Param val="Microsoft JhengHei" valType="str" updates="constant" name="font"/>
+        <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
+        <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="text_5" valType="code" updates="None" name="name"/>
+        <Param val="" valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="(0, -0.4)" valType="list" updates="constant" name="pos"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="300" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="$f&quot;目前經過時間：({int(t)//60} min)&quot;" valType="str" updates="set every frame" name="text"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+        <Param val="" valType="code" updates="None" name="validator"/>
+        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
+      </TextComponent>
     </Routine>
     <Routine name="routine_03_Task_breath_Instr">
       <RoutineSettingsComponent name="routine_03_Task_breath_Instr" plugin="None">
@@ -665,7 +692,7 @@
         <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="# 1. 取得當前本地精準時間&amp;#10;now_iso = datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')&amp;#10;now_epoch = time.time()&amp;#10;&amp;#10;# 2. 發送 Marker 代碼&amp;#10;marker_code = '300'&amp;#10;send_marker(marker_code)&amp;#10;&amp;#10;# 3. 即時寫入 log/ 資料夾下的 CSV&amp;#10;with open(log_filename, mode='a', newline='', encoding='utf-8-sig') as f:&amp;#10;    writer = csv.writer(f)&amp;#10;    writer.writerow([&amp;#10;        participant_id,&amp;#10;        session_id,&amp;#10;        0,&amp;#10;        &quot;Breath_Instr&quot;,&amp;#10;        marker_code,&amp;#10;        now_iso,&amp;#10;        f&quot;{now_epoch:.6f}&quot;,&amp;#10;        f&quot;{t:.4f}&quot;&amp;#10;    ])&amp;#10;&amp;#10;# 控制台除錯印出&amp;#10;print(f&quot;[Log Saved] Sub: {participant_id} | Sess: {session_id} | Event: Breath_Instr | Time: {now_iso}&quot;)" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="# 1. 取得當前本地精準時間&amp;#10;#now_iso = datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')&amp;#10;#now_epoch = time.time()&amp;#10;#&amp;#10;## 2. 發送 Marker 代碼&amp;#10;#marker_code = '300'&amp;#10;#send_marker(marker_code)&amp;#10;#&amp;#10;## 3. 即時寫入 log/ 資料夾下的 CSV&amp;#10;#with open(log_filename, mode='a', newline='', encoding='utf-8-sig') as f:&amp;#10;#    writer = csv.writer(f)&amp;#10;#    writer.writerow([&amp;#10;#        participant_id,&amp;#10;#        session_id,&amp;#10;#        0,&amp;#10;#        &quot;Breath_Instr&quot;,&amp;#10;#        marker_code,&amp;#10;#        now_iso,&amp;#10;#        f&quot;{now_epoch:.6f}&quot;,&amp;#10;#        f&quot;{t:.4f}&quot;&amp;#10;#    ])&amp;#10;#&amp;#10;## 控制台除錯印出&amp;#10;#print(f&quot;[Log Saved] Sub: {participant_id} | Sess: {session_id} | Event: Breath_Instr | Time: {now_iso}&quot;)" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Py" valType="str" updates="None" name="Code Type"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
@@ -673,7 +700,7 @@
         <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
         <Param val="" valType="extendedCode" updates="constant" name="End Routine"/>
-        <Param val="True" valType="bool" updates="None" name="disabled"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="code_4" valType="code" updates="None" name="name"/>
       </CodeComponent>
     </Routine>
@@ -1019,6 +1046,33 @@
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="code_7" valType="code" updates="None" name="name"/>
       </CodeComponent>
+      <TextComponent name="text_2" plugin="None">
+        <Param val="white" valType="color" updates="constant" name="color"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="1" valType="num" updates="constant" name="contrast"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="False" valType="code" updates="constant" name="draggable"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="None" valType="str" updates="constant" name="flip"/>
+        <Param val="Microsoft JhengHei" valType="str" updates="constant" name="font"/>
+        <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
+        <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="text_2" valType="code" updates="None" name="name"/>
+        <Param val="" valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="(0, -0.4)" valType="list" updates="constant" name="pos"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="420" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="$f&quot;目前經過時間：({int(t)//60} min)&quot;" valType="str" updates="set every frame" name="text"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+        <Param val="" valType="code" updates="None" name="validator"/>
+        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
+      </TextComponent>
     </Routine>
     <Routine name="routine_05_Task_blow_Instr">
       <RoutineSettingsComponent name="routine_05_Task_blow_Instr" plugin="None">
@@ -1385,6 +1439,33 @@
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="code_11" valType="code" updates="None" name="name"/>
       </CodeComponent>
+      <TextComponent name="text_4" plugin="None">
+        <Param val="white" valType="color" updates="constant" name="color"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="1" valType="num" updates="constant" name="contrast"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="False" valType="code" updates="constant" name="draggable"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="None" valType="str" updates="constant" name="flip"/>
+        <Param val="Microsoft JhengHei" valType="str" updates="constant" name="font"/>
+        <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
+        <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="text_4" valType="code" updates="None" name="name"/>
+        <Param val="" valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="(0, -0.4)" valType="list" updates="constant" name="pos"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="180" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="$f&quot;目前經過時間：({int(t)//60} min)&quot;" valType="str" updates="set every frame" name="text"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+        <Param val="" valType="code" updates="None" name="validator"/>
+        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
+      </TextComponent>
     </Routine>
     <Routine name="routine_06_Exper_End">
       <RoutineSettingsComponent name="routine_06_Exper_End" plugin="None">
@@ -1709,7 +1790,7 @@
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
         <Param val="0.0" valType="code" updates="None" name="startVal"/>
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="3.0" valType="code" updates="constant" name="stopVal"/>
+        <Param val="3" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
         <Param val="$f&quot;【靜坐基準測量】{3 - int(t)} 秒後開始&quot;" valType="str" updates="set every frame" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
@@ -1734,6 +1815,157 @@
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="False" valType="bool" updates="None" name="useWindowParams"/>
       </RoutineSettingsComponent>
+    </Routine>
+    <Routine name="routine_04_Task_break2">
+      <RoutineSettingsComponent name="routine_04_Task_break2" plugin="None">
+        <Param val="none" valType="str" updates="None" name="backgroundFit"/>
+        <Param val="" valType="str" updates="None" name="backgroundImg"/>
+        <Param val="$[0,0,0]" valType="color" updates="None" name="color"/>
+        <Param val="rgb" valType="str" updates="None" name="colorSpace"/>
+        <Param val="" valType="str" updates="constant" name="desc"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="False" valType="code" updates="None" name="forceNonSlip"/>
+        <Param val="routine_04_Task_break2" valType="code" updates="None" name="name"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="constant" name="skipIf"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="False" valType="bool" updates="None" name="useWindowParams"/>
+      </RoutineSettingsComponent>
+      <TextComponent name="break_text_2" plugin="None">
+        <Param val="white" valType="color" updates="constant" name="color"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="1" valType="num" updates="constant" name="contrast"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="False" valType="code" updates="constant" name="draggable"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="None" valType="str" updates="constant" name="flip"/>
+        <Param val="Microsoft JhengHei" valType="str" updates="constant" name="font"/>
+        <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
+        <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="break_text_2" valType="code" updates="None" name="name"/>
+        <Param val="" valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="420" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="吹氣球實驗已結束，請稍作休息&amp;#10;&amp;#10;下一階段為慢呼吸實驗，將於7分鐘後開始&amp;#10;" valType="str" updates="constant" name="text"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+        <Param val="" valType="code" updates="None" name="validator"/>
+        <Param val="2" valType="num" updates="constant" name="wrapWidth"/>
+      </TextComponent>
+      <CodeComponent name="code_9" plugin="None">
+        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="send_marker(&quot;breath_exper_begin&quot;);&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="if expInfo['group'] == '1': continueRoutine = False&amp;#10;&amp;#10;sent_3min = False&amp;#10;sent_5min = False&amp;#10;# 1. 取得當前本地精準時間&amp;#10;now_iso = datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')&amp;#10;now_epoch = time.time()&amp;#10;&amp;#10;# 2. 發送 Marker 代碼&amp;#10;marker_code = '530'&amp;#10;send_marker(marker_code)&amp;#10;&amp;#10;# 3. 即時寫入 log/ 資料夾下的 CSV&amp;#10;with open(log_filename, mode='a', newline='', encoding='utf-8-sig') as f:&amp;#10;    writer = csv.writer(f)&amp;#10;    writer.writerow([&amp;#10;        participant_id,&amp;#10;        session_id,&amp;#10;        0,&amp;#10;        &quot;Blow_Post_Begin&quot;,&amp;#10;        marker_code,&amp;#10;        now_iso,&amp;#10;        f&quot;{now_epoch:.6f}&quot;,&amp;#10;        f&quot;{t:.4f}&quot;&amp;#10;    ])&amp;#10;&amp;#10;# 控制台除錯印出&amp;#10;print(f&quot;[Log Saved] Sub: {participant_id} | Sess: {session_id} | Event: Blow_Post_Begin | Time: {now_iso}&quot;)" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="Py" valType="str" updates="None" name="Code Type"/>
+        <Param val="if not sent_3min and t &gt;= 180:&amp;#10;    # 1. 取得當前本地精準時間&amp;#10;    now_iso = datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')&amp;#10;    now_epoch = time.time()&amp;#10;&amp;#10;    # 2. 發送 Marker 代碼&amp;#10;    marker_code = '531'&amp;#10;    send_marker(marker_code)&amp;#10;&amp;#10;    # 3. 即時寫入 log/ 資料夾下的 CSV&amp;#10;    with open(log_filename, mode='a', newline='', encoding='utf-8-sig') as f:&amp;#10;        writer = csv.writer(f)&amp;#10;        writer.writerow([&amp;#10;            participant_id,&amp;#10;            session_id,&amp;#10;            0,&amp;#10;            &quot;Blow_Post_End&quot;,&amp;#10;            marker_code,&amp;#10;            now_iso,&amp;#10;            f&quot;{now_epoch:.6f}&quot;,&amp;#10;            f&quot;{t:.4f}&quot;&amp;#10;        ])&amp;#10;&amp;#10;    # 控制台除錯印出&amp;#10;    print(f&quot;[Log Saved] Sub: {participant_id} | Sess: {session_id} | Event: Blow_Post_End | Time: {now_iso}&quot;)&amp;#10;    sent_3min = True&amp;#10;    &amp;#10;if not sent_5min and t &gt;= 300:&amp;#10;    # 1. 取得當前本地精準時間&amp;#10;    now_iso = datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')&amp;#10;    now_epoch = time.time()&amp;#10;&amp;#10;    # 2. 發送 Marker 代碼&amp;#10;    marker_code = '310'&amp;#10;    send_marker(marker_code)&amp;#10;&amp;#10;    # 3. 即時寫入 log/ 資料夾下的 CSV&amp;#10;    with open(log_filename, mode='a', newline='', encoding='utf-8-sig') as f:&amp;#10;        writer = csv.writer(f)&amp;#10;        writer.writerow([&amp;#10;            participant_id,&amp;#10;            session_id,&amp;#10;            0,&amp;#10;            &quot;Breath_Pre_Begin&quot;,&amp;#10;            marker_code,&amp;#10;            now_iso,&amp;#10;            f&quot;{now_epoch:.6f}&quot;,&amp;#10;            f&quot;{t:.4f}&quot;&amp;#10;        ])&amp;#10;&amp;#10;    # 控制台除錯印出&amp;#10;    print(f&quot;[Log Saved] Sub: {participant_id} | Sess: {session_id} | Event: Breath_Pre_Begin | Time: {now_iso}&quot;)&amp;#10;    sent_5min = True" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="# 1. 取得當前本地精準時間&amp;#10;now_iso = datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')&amp;#10;now_epoch = time.time()&amp;#10;&amp;#10;# 2. 發送 Marker 代碼&amp;#10;marker_code = '311'&amp;#10;send_marker(marker_code)&amp;#10;&amp;#10;# 3. 即時寫入 log/ 資料夾下的 CSV&amp;#10;with open(log_filename, mode='a', newline='', encoding='utf-8-sig') as f:&amp;#10;    writer = csv.writer(f)&amp;#10;    writer.writerow([&amp;#10;        participant_id,&amp;#10;        session_id,&amp;#10;        0,&amp;#10;        &quot;Breath_Pre_End&quot;,&amp;#10;        marker_code,&amp;#10;        now_iso,&amp;#10;        f&quot;{now_epoch:.6f}&quot;,&amp;#10;        f&quot;{t:.4f}&quot;&amp;#10;    ])&amp;#10;&amp;#10;# 控制台除錯印出&amp;#10;print(f&quot;[Log Saved] Sub: {participant_id} | Sess: {session_id} | Event: Breath_Pre_End | Time: {now_iso}&quot;)" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="code_9" valType="code" updates="None" name="name"/>
+      </CodeComponent>
+      <TextComponent name="text_3" plugin="None">
+        <Param val="white" valType="color" updates="constant" name="color"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="1" valType="num" updates="constant" name="contrast"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="False" valType="code" updates="constant" name="draggable"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="None" valType="str" updates="constant" name="flip"/>
+        <Param val="Arial" valType="str" updates="constant" name="font"/>
+        <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
+        <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="text_3" valType="code" updates="None" name="name"/>
+        <Param val="" valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="(0, -0.4)" valType="list" updates="constant" name="pos"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="420" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="$f&quot;目前經過時間：({int(t)/60}min)&quot;" valType="str" updates="set every frame" name="text"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+        <Param val="" valType="code" updates="None" name="validator"/>
+        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
+      </TextComponent>
+    </Routine>
+    <Routine name="routine_03_Task_breath_post">
+      <RoutineSettingsComponent name="routine_03_Task_breath_post" plugin="None">
+        <Param val="none" valType="str" updates="None" name="backgroundFit"/>
+        <Param val="" valType="str" updates="None" name="backgroundImg"/>
+        <Param val="$[0,0,0]" valType="color" updates="None" name="color"/>
+        <Param val="rgb" valType="str" updates="None" name="colorSpace"/>
+        <Param val="" valType="str" updates="constant" name="desc"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="False" valType="code" updates="None" name="forceNonSlip"/>
+        <Param val="routine_03_Task_breath_post" valType="code" updates="None" name="name"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="constant" name="skipIf"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="False" valType="bool" updates="None" name="useWindowParams"/>
+      </RoutineSettingsComponent>
+      <TextComponent name="Task_breath_post" plugin="None">
+        <Param val="white" valType="color" updates="constant" name="color"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="1" valType="num" updates="constant" name="contrast"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="False" valType="code" updates="constant" name="draggable"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="None" valType="str" updates="constant" name="flip"/>
+        <Param val="Microsoft JhengHei" valType="str" updates="constant" name="font"/>
+        <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
+        <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="Task_breath_post" valType="code" updates="None" name="name"/>
+        <Param val="" valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="180" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="慢呼吸實驗已結束，請您稍作休息&amp;#10;3分鐘後將結束全數實驗流程。" valType="str" updates="constant" name="text"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+        <Param val="" valType="code" updates="None" name="validator"/>
+        <Param val="2" valType="num" updates="constant" name="wrapWidth"/>
+      </TextComponent>
+      <CodeComponent name="code_13" plugin="None">
+        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="if expInfo['group'] != '1': continueRoutine = False&amp;#10;# 1. 取得當前本地精準時間&amp;#10;now_iso = datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')&amp;#10;now_epoch = time.time()&amp;#10;&amp;#10;# 2. 發送 Marker 代碼&amp;#10;marker_code = '330'&amp;#10;send_marker(marker_code)&amp;#10;&amp;#10;# 3. 即時寫入 log/ 資料夾下的 CSV&amp;#10;with open(log_filename, mode='a', newline='', encoding='utf-8-sig') as f:&amp;#10;    writer = csv.writer(f)&amp;#10;    writer.writerow([&amp;#10;        participant_id,&amp;#10;        session_id,&amp;#10;        0,&amp;#10;        &quot;Breath_Post_Begin&quot;,&amp;#10;        marker_code,&amp;#10;        now_iso,&amp;#10;        f&quot;{now_epoch:.6f}&quot;,&amp;#10;        f&quot;{t:.4f}&quot;&amp;#10;    ])&amp;#10;&amp;#10;# 控制台除錯印出&amp;#10;print(f&quot;[Log Saved] Sub: {participant_id} | Sess: {session_id} | Event: Breath_Post_Begin | Time: {now_iso}&quot;)" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="Py" valType="str" updates="None" name="Code Type"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="# 1. 取得當前本地精準時間&amp;#10;now_iso = datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')&amp;#10;now_epoch = time.time()&amp;#10;&amp;#10;# 2. 發送 Marker 代碼&amp;#10;marker_code = '331'&amp;#10;send_marker(marker_code)&amp;#10;&amp;#10;# 3. 即時寫入 log/ 資料夾下的 CSV&amp;#10;with open(log_filename, mode='a', newline='', encoding='utf-8-sig') as f:&amp;#10;    writer = csv.writer(f)&amp;#10;    writer.writerow([&amp;#10;        participant_id,&amp;#10;        session_id,&amp;#10;        0,&amp;#10;        &quot;Breath_Post_End&quot;,&amp;#10;        marker_code,&amp;#10;        now_iso,&amp;#10;        f&quot;{now_epoch:.6f}&quot;,&amp;#10;        f&quot;{t:.4f}&quot;&amp;#10;    ])&amp;#10;&amp;#10;# 控制台除錯印出&amp;#10;print(f&quot;[Log Saved] Sub: {participant_id} | Sess: {session_id} | Event: Breath_Post_End | Time: {now_iso}&quot;)" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="code_13" valType="code" updates="None" name="name"/>
+      </CodeComponent>
     </Routine>
   </Routines>
   <Flow>
@@ -1766,7 +1998,7 @@
       <Param name="conditionsFile" updates="None" val="" valType="file"/>
       <Param name="endPoints" updates="None" val="[0, 1]" valType="code"/>
       <Param name="isTrials" updates="None" val="True" valType="bool"/>
-      <Param name="loopType" updates="None" val="random" valType="str"/>
+      <Param name="loopType" updates="None" val="sequential" valType="str"/>
       <Param name="nReps" updates="None" val="7" valType="code"/>
       <Param name="name" updates="None" val="trials_5" valType="code"/>
       <Param name="random seed" updates="None" val="" valType="code"/>
